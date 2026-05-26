@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: commitbot
+      POSTGRES_USER: commitbot
+      POSTGRES_PASSWORD: commitbot
+    ports:
+      - "5432:5432"
+    volumes:
+      - commitbot-postgres:/var/lib/postgresql/data
+
+volumes:
+  commitbot-postgres:
+

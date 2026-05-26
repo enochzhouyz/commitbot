@@ -1,0 +1,2 @@
+"""Commitbot worker service placeholder."""
+

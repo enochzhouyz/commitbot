@@ -1,0 +1,2 @@
+"""Commitbot applications."""
+

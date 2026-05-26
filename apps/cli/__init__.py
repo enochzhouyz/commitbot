@@ -1,0 +1,2 @@
+"""Commitbot CLI."""
+
