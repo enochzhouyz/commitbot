@@ -9,8 +9,9 @@ This repository currently contains the first implementation slice:
 - shared schema and component contracts
 - event type registry
 - local SQLite event store for immediate development
-- FastAPI service with health and event endpoints
+- FastAPI service with health, event, timeline, project, goal, plan, summary, and ask endpoints
 - CLI for logging, listing, status, and Git capture
+- static full-stack web workbench served by the API
 - Postgres/pgvector migration and Docker Compose foundation
 
 ## Development
@@ -27,6 +28,12 @@ Run the API:
 uv run uvicorn services.api.main:app --reload
 ```
 
+Open the web workbench:
+
+```txt
+http://127.0.0.1:8000
+```
+
 Use the CLI:
 
 ```powershell
@@ -34,6 +41,19 @@ uv run commitbot status
 uv run commitbot log "Started Commitbot"
 uv run commitbot events
 uv run commitbot capture git
+```
+
+Useful API endpoints:
+
+```txt
+GET  /status
+GET  /timeline
+GET  /projects
+GET  /goals
+POST /goals
+GET  /plans
+POST /plans
+POST /agent/ask
 ```
 
 Run tests:

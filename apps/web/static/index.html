@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Commitbot</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="mark">C</div>
+          <div>
+            <h1>Commitbot</h1>
+            <p>Developer memory workbench</p>
+          </div>
+        </div>
+        <nav>
+          <a href="#today">Today</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#projects">Projects</a>
+          <a href="#plans">Plans</a>
+          <a href="#ask">Ask</a>
+        </nav>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Local-first baseline</p>
+            <h2>Trace your work, inspect patterns, and plan forward.</h2>
+          </div>
+          <button id="refreshButton" type="button">Refresh</button>
+        </header>
+
+        <section id="today" class="band">
+          <div class="sectionHeader">
+            <h3>Today</h3>
+            <p id="statusText">Loading status...</p>
+          </div>
+          <form id="noteForm" class="inlineForm">
+            <input id="noteInput" name="message" placeholder="Log a quick work note" required />
+            <button type="submit">Log Note</button>
+          </form>
+          <div id="summaryPanel" class="summaryPanel"></div>
+        </section>
+
+        <section id="timeline" class="band">
+          <div class="sectionHeader">
+            <h3>Timeline</h3>
+            <button id="captureGitButton" type="button">Capture Git</button>
+          </div>
+          <div id="timelineList" class="eventList"></div>
+        </section>
+
+        <section id="projects" class="band twoColumn">
+          <div>
+            <div class="sectionHeader">
+              <h3>Projects</h3>
+            </div>
+            <div id="projectList" class="gridList"></div>
+          </div>
+          <div>
+            <div class="sectionHeader">
+              <h3>Goals</h3>
+            </div>
+            <form id="goalForm" class="stackForm">
+              <input id="goalTitle" placeholder="Goal title" required />
+              <select id="goalType">
+                <option value="project">Project</option>
+                <option value="skill">Skill</option>
+                <option value="career">Career</option>
+                <option value="habit">Habit</option>
+                <option value="research">Research</option>
+              </select>
+              <textarea id="goalDescription" placeholder="Why it matters"></textarea>
+              <button type="submit">Add Goal</button>
+            </form>
+            <div id="goalList" class="gridList"></div>
+          </div>
+        </section>
+
+        <section id="plans" class="band">
+          <div class="sectionHeader">
+            <h3>Plans</h3>
+            <p>Monthly, quarterly, and yearly direction grounded in activity traces.</p>
+          </div>
+          <form id="planForm" class="planForm">
+            <input id="planTitle" placeholder="Plan title" required />
+            <select id="planHorizon">
+              <option value="monthly">Monthly</option>
+              <option value="quarterly" selected>Quarterly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+            <textarea id="planNarrative" placeholder="Focus themes, constraints, or intended direction"></textarea>
+            <button type="submit">Create Plan</button>
+          </form>
+          <div id="planList" class="gridList"></div>
+        </section>
+
+        <section id="ask" class="band">
+          <div class="sectionHeader">
+            <h3>Ask</h3>
+            <p>Baseline evidence answers over captured events.</p>
+          </div>
+          <form id="askForm" class="inlineForm">
+            <input id="askInput" placeholder="What have I worked on recently?" required />
+            <button type="submit">Ask</button>
+          </form>
+          <pre id="answerBox" class="answerBox"></pre>
+        </section>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+

@@ -6,4 +6,4 @@ def test_git_collector_returns_events_for_repo() -> None:
 
     assert any(event.type == "git.diff_snapshot" for event in events)
     assert any(event.type == "git.commit" for event in events)
-
+    assert all(event.payload.get("repo_path") for event in events)

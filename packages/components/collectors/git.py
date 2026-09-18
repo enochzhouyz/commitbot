@@ -17,25 +17,26 @@ class GitCollector:
             return []
 
         branch = self._run_git("branch", "--show-current") or "detached"
+        repo_path = str(self._repo_root() or self.cwd.resolve())
         events = [
             ActivityEvent(
                 source="git",
                 type="git.diff_snapshot",
                 payload={
                     "branch": branch,
-                    "repo_path": str(self._repo_root() or self.cwd.resolve()),
+                    "repo_path": repo_path,
                     **self._diff_counts(),
                 },
                 metadata={"collector": self.name, "collector_version": "1"},
             )
         ]
 
-        commit = self._latest_commit(branch)
+        commit = self._latest_commit(branch, repo_path)
         if commit:
             events.append(commit)
         return events
 
-    def _latest_commit(self, branch: str) -> ActivityEvent | None:
+    def _latest_commit(self, branch: str, repo_path: str) -> ActivityEvent | None:
         output = self._run_git("log", "-1", "--pretty=format:%H%x1f%s%x1f%aI")
         if not output:
             return None
@@ -48,6 +49,7 @@ class GitCollector:
                 "message": message,
                 "author_time": author_time,
                 "branch": branch,
+                "repo_path": repo_path,
             },
             metadata={"collector": self.name, "collector_version": "1"},
         )
@@ -86,4 +88,3 @@ class GitCollector:
         if completed.returncode != 0:
             return ""
         return completed.stdout.strip()
-
